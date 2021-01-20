@@ -43,7 +43,7 @@ namespace HerentalsVuilbakken.Services
                     new Claim("UserID", user.UserID.ToString()),
                     new Claim("Adres", user.Adres),
                     new Claim("Username", user.Username),
-                    new Claim("RoleID", user.RoleID.ToString())
+                    new Claim("Role", user.Role.Naam)
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

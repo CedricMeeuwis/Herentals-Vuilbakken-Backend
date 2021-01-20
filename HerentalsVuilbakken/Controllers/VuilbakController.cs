@@ -35,21 +35,6 @@ namespace HerentalsVuilbakken.Controllers
             }
             return vuilbak;
         }
-        // GET: api/Vuilbak/User/1
-        [Authorize]
-        [HttpGet("User/{id}")]
-        public async Task<ActionResult<IEnumerable<Vuilbak>>> GetVuilbakkenOfUser(int id)
-        {
-            if (AuthorizationCheck()) { return Unauthorized(); }
-
-            var vuilbakken = await _context.Vuilbakken.Where(v => v.UserID == id).ToListAsync();
-
-            if (vuilbakken == null)
-            {
-                return NotFound();
-            }
-            return vuilbakken;
-        }
         // PUT: api/Vuilbak/5
         [Authorize]
         [HttpPut("{id}")]
