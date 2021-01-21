@@ -12,11 +12,8 @@ namespace HerentalsVuilbakken.Models
         public int UserID { get; set; }
         public string Username { get; set; }
         public string Wachtwoord { get; set; }
-        public string Adres { get; set; }
         [NotMapped]
         public string Token { get; set; }
-        [JsonIgnore]
-        public ICollection<Vuilbak> Vuilbakken { get; set; }
 
         //Relations
         public int? RoleID { get; set; }
