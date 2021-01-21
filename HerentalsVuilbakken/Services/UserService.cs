@@ -41,7 +41,6 @@ namespace HerentalsVuilbakken.Services
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim("UserID", user.UserID.ToString()),
-                    new Claim("Adres", user.Adres),
                     new Claim("Username", user.Username),
                     new Claim("Role", user.Role.Naam)
                 }),
