@@ -122,6 +122,21 @@ namespace HerentalsVuilbakken.Controllers
             user.Wachtwoord = null;
             return user;
         }
+        // GET: api/User/1
+        [Authorize]
+        [HttpGet("{id}")]
+        public async Task<ActionResult<User>> GetUser(int id)
+        {
+            if (AuthorizationCheck()) { return Unauthorized(); }
+
+            var user = await _context.Users.SingleOrDefaultAsync(u => u.UserID == id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return user;
+        }
         [Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult<User>> DeleteUser(int id)
