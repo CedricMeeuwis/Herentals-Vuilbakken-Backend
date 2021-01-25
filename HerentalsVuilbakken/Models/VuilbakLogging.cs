@@ -9,6 +9,7 @@ namespace HerentalsVuilbakken.Models
     {
         public int VuilbakLoggingID { get; set; }
         public int VuilbakID { get; set; }
+        public DateTime Datum { get; set; }
         public double Gewicht { get; set; }
         public double Volheid { get; set; }
     }

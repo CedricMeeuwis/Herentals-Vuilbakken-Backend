@@ -47,7 +47,7 @@ namespace HerentalsVuilbakken.Controllers
         public async Task<ActionResult<IEnumerable<VuilbakLogging>>> GetVuilbakLoggingByVuilbak(int id)
         {
 
-            return await _context.VuilbakLoggings.Where(v => v.VuilbakID == id).ToListAsync();
+            return await _context.VuilbakLoggings.Where(v => v.VuilbakID == id).OrderBy(v => v.Datum).ToListAsync();
         }
         // PUT: api/VuilbakLogging/5
         [Authorize]

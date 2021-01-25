@@ -40,10 +40,10 @@ namespace HerentalsVuilbakken.Models
             context.SaveChanges();
 
             context.VuilbakLoggings.AddRange(
-                new VuilbakLogging { VuilbakID = 2, Gewicht = 10.3, Volheid = 35.6 },
-                new VuilbakLogging { VuilbakID = 2, Gewicht = 19.5, Volheid = 50.8 },
-                new VuilbakLogging { VuilbakID = 2, Gewicht = 34.3, Volheid = 60.0 },
-                new VuilbakLogging { VuilbakID = 1, Gewicht = 14.1, Volheid = 8.0 }
+                new VuilbakLogging { VuilbakID = 2, Datum = DateTime.Now.AddDays(-3), Gewicht = 10.3, Volheid = 35.6 },
+                new VuilbakLogging { VuilbakID = 2, Datum = DateTime.Now.AddDays(-2), Gewicht = 19.5, Volheid = 50.8 },
+                new VuilbakLogging { VuilbakID = 2, Datum = DateTime.Now.AddDays(-1), Gewicht = 34.3, Volheid = 60.0 },
+                new VuilbakLogging { VuilbakID = 1, Datum = DateTime.Now.AddDays(-1), Gewicht = 14.1, Volheid = 8.0 }
             );
             context.SaveChanges();
         }
