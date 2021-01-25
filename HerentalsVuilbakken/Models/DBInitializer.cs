@@ -33,9 +33,9 @@ namespace HerentalsVuilbakken.Models
             context.SaveChanges();
 
             context.Vuilbakken.AddRange(
-                new Vuilbak { Straat = "Olympiadelaan", Breedtegraad = 51.18381, Lengtegraad = 4.83032, Volheid = 12.5},
-                new Vuilbak { Straat = "Begijnenstraat", Breedtegraad = 51.18017, Lengtegraad = 4.83548, Volheid = 86.5 },
-                new Vuilbak { Straat = "De Zaatweg", Breedtegraad = 51.18203, Lengtegraad = 4.82885, Volheid = 0.0 }
+                new Vuilbak { Straat = "Olympiadelaan", Breedtegraad = 51.18381, Lengtegraad = 4.83032, Gewicht = 23, Volheid = 12.5, Brand = false, WanneerVol = 100},
+                new Vuilbak { Straat = "Begijnenstraat", Breedtegraad = 51.18017, Lengtegraad = 4.83548, Gewicht = 40.3, Volheid = 86.5, Brand = false, WanneerVol = 98.9 },
+                new Vuilbak { Straat = "De Zaatweg", Breedtegraad = 51.18203, Lengtegraad = 4.82885, Gewicht = 10.8, Volheid = 0.0 , Brand = false, WanneerVol = 103}
             );
             context.SaveChanges();
         }

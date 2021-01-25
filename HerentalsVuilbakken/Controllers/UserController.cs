@@ -79,7 +79,6 @@ namespace HerentalsVuilbakken.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<User>> PutUser(int id, User user)
         {
-            if (AuthorizationCheck()) { return Unauthorized(); }
 
             if (user.Wachtwoord != "" && user.Wachtwoord != null)
             {
@@ -127,7 +126,6 @@ namespace HerentalsVuilbakken.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
-            if (AuthorizationCheck()) { return Unauthorized(); }
 
             var user = await _context.Users.SingleOrDefaultAsync(u => u.UserID == id);
 
@@ -141,7 +139,6 @@ namespace HerentalsVuilbakken.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<User>> DeleteUser(int id)
         {
-            if (AuthorizationCheck()) { return Unauthorized(); }
 
             var user = await _context.Users.FindAsync(id);
 
@@ -154,17 +151,6 @@ namespace HerentalsVuilbakken.Controllers
             await _context.SaveChangesAsync();
 
             return user;
-        }
-        private bool AuthorizationCheck()
-        {
-            //TO DO
-            return false;
-            bool isAdmin = bool.Parse(User.Claims.FirstOrDefault(c => c.Type == "Admin").Value);
-            if (!isAdmin)
-            {
-                return true;
-            }
-            return false;
         }
         private bool UserExists(int id)
         {

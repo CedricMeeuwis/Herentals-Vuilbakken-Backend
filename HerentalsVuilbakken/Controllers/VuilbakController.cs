@@ -20,12 +20,18 @@ namespace HerentalsVuilbakken.Controllers
         {
             _context = context;
         }
+        // GET: api/Vuilbak
+        [Authorize]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Vuilbak>>> GetVuilbakken()
+        {
+            return await _context.Vuilbakken.ToListAsync();
+        }
         // GET: api/Vuilbak/1
         [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<Vuilbak>> GetVuilbak(int id)
         {
-            if (AuthorizationCheck()) { return Unauthorized(); }
 
             var vuilbak = await _context.Vuilbakken.SingleOrDefaultAsync(v => v.VuilbakID == id);
 
@@ -40,7 +46,6 @@ namespace HerentalsVuilbakken.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutVuilbak(int id, Vuilbak vuilbak)
         {
-            if (AuthorizationCheck()) { return Unauthorized(); }
 
             if (id != vuilbak.VuilbakID)
             {
@@ -67,12 +72,77 @@ namespace HerentalsVuilbakken.Controllers
 
             return NoContent();
         }
+        // PUT: api/Vuilbak/Gewicht/10/5
+        [HttpPut("Gewicht/{gewicht}/{id}")]
+        public async Task<IActionResult> PutVuilbakGewicht(int gewicht, int id)
+        {
+
+            var vuilbak = await _context.Vuilbakken.SingleOrDefaultAsync(v => v.VuilbakID == id);
+
+            if (vuilbak == null)
+            {
+                return BadRequest();
+            }
+            vuilbak.Gewicht = gewicht;
+
+            _context.Entry(vuilbak).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!VuilbakExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+        // PUT: api/Vuilbak/Volheid/10/5
+        [HttpPut("Gewicht/{volheid}/{id}")]
+        public async Task<IActionResult> PutVuilbakVolheid(int volheid, int id)
+        {
+
+            var vuilbak = await _context.Vuilbakken.SingleOrDefaultAsync(v => v.VuilbakID == id);
+
+            if (vuilbak == null)
+            {
+                return BadRequest();
+            }
+            vuilbak.Volheid = volheid;
+
+            _context.Entry(vuilbak).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!VuilbakExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
         // POST: api/Vuilbak
         [Authorize]
         [HttpPost]
         public async Task<ActionResult<Vuilbak>> PostVuilbak(Vuilbak vuilbak)
         {
-            if (AuthorizationCheck()) { return Unauthorized(); }
 
             _context.Vuilbakken.Add(vuilbak);
             await _context.SaveChangesAsync();
@@ -84,7 +154,6 @@ namespace HerentalsVuilbakken.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Vuilbak>> DeleteVuilbak(int id)
         {
-            if (AuthorizationCheck()) { return Unauthorized(); }
 
             var vuilbak = await _context.Vuilbakken.FindAsync(id);
             if (vuilbak == null)
@@ -96,16 +165,6 @@ namespace HerentalsVuilbakken.Controllers
             await _context.SaveChangesAsync();
 
             return vuilbak;
-        }
-        private bool AuthorizationCheck() {
-            //TO DO
-            return false;
-            bool isInwoner = bool.Parse(User.Claims.FirstOrDefault(c => c.Type == "Inwoner").Value);
-            if (!isInwoner)
-            {
-                return true;
-            }
-            return false;
         }
         private bool VuilbakExists(int id)
         {

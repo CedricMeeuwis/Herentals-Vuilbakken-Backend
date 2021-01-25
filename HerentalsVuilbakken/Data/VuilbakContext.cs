@@ -15,12 +15,14 @@ namespace HerentalsVuilbakken.Data
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Vuilbak> Vuilbakken { get; set; }
+        public DbSet<VuilbakLogging> VuilbakLoggings { get; set; }
         public DbSet<Role> Roles { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable("User");
             modelBuilder.Entity<Vuilbak>().ToTable("Vuilbak");
             modelBuilder.Entity<Role>().ToTable("Role");
+            modelBuilder.Entity<Vuilbak>().ToTable("VuilbakLogging");
         }
     }
 }
