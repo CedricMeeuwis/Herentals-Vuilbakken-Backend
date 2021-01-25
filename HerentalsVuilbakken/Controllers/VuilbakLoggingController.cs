@@ -20,7 +20,7 @@ namespace HerentalsVuilbakken.Controllers
         {
             _context = context;
         }
-        // GET: api/Vuilbak
+        // GET: api/VuilbakLogging
         [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<VuilbakLogging>>> GetVuilbakLoggings()

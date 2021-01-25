@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace HerentalsVuilbakken.Models
@@ -15,6 +16,8 @@ namespace HerentalsVuilbakken.Models
         public double Lengtegraad { get; set; }
         public bool Brand { get; set; }
         public double WanneerVol { get; set; }
-        
+
+        [JsonIgnore]
+        public ICollection<VuilbakLogging> VuilbakLoggings { get; set; }
     }
 }

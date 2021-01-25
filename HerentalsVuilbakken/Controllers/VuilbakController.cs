@@ -106,7 +106,7 @@ namespace HerentalsVuilbakken.Controllers
             return NoContent();
         }
         // PUT: api/Vuilbak/Volheid/10/5
-        [HttpPut("Gewicht/{volheid}/{id}")]
+        [HttpPut("Volheid/{volheid}/{id}")]
         public async Task<IActionResult> PutVuilbakVolheid(int volheid, int id)
         {
 
