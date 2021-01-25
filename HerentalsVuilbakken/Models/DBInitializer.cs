@@ -38,6 +38,14 @@ namespace HerentalsVuilbakken.Models
                 new Vuilbak { Straat = "De Zaatweg", Breedtegraad = 51.18203, Lengtegraad = 4.82885, Gewicht = 10.8, Volheid = 0.0 , Brand = false, WanneerVol = 103}
             );
             context.SaveChanges();
+
+            context.VuilbakLoggings.AddRange(
+                new VuilbakLogging { VuilbakID = 2, Gewicht = 10.3, Volheid = 35.6 },
+                new VuilbakLogging { VuilbakID = 2, Gewicht = 19.5, Volheid = 50.8 },
+                new VuilbakLogging { VuilbakID = 2, Gewicht = 34.3, Volheid = 60.0 },
+                new VuilbakLogging { VuilbakID = 1, Gewicht = 14.1, Volheid = 8.0 }
+            );
+            context.SaveChanges();
         }
     }
 }
