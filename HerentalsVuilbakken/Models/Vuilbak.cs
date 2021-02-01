@@ -17,6 +17,9 @@ namespace HerentalsVuilbakken.Models
         public bool Brand { get; set; }
         public double WanneerVol { get; set; }
 
+        //Relations
+        public int? ZoneID { get; set; }
+        public Zone? Zone { get; set; }
         [JsonIgnore]
         public ICollection<VuilbakLogging> VuilbakLoggings { get; set; }
     }

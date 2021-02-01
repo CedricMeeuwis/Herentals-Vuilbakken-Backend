@@ -20,12 +20,18 @@ namespace HerentalsVuilbakken.Models
 
             context.Roles.AddRange(
               new Role { Naam = "Ophaler" },
-              new Role { Naam = "Admin" }
+              new Role { Naam = "Admin" },
+              new Role { Naam = "Groendienst" }
+            );
+            context.SaveChanges();
+
+            context.Zones.AddRange(
+              new Zone { Naam = "Kerk" }
             );
             context.SaveChanges();
 
             context.Users.AddRange(
-                new User { Username = "Joske", RoleID = 1, Wachtwoord = "o6w8D+OE1/nhuMhyD1iKz4JkqmDFH3Sk8s5kV1FnNPRah5ot"},
+                new User { Username = "Bert", RoleID = 1, Wachtwoord = "o6w8D+OE1/nhuMhyD1iKz4JkqmDFH3Sk8s5kV1FnNPRah5ot"},
                 new User { Username = "Andre",  RoleID = 1, Wachtwoord = "o6w8D+OE1/nhuMhyD1iKz4JkqmDFH3Sk8s5kV1FnNPRah5ot" },
                 new User { Username = "JoSpiesens", RoleID = 2, Wachtwoord = "o6w8D+OE1/nhuMhyD1iKz4JkqmDFH3Sk8s5kV1FnNPRah5ot" }
 

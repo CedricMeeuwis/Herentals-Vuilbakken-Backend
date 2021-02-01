@@ -25,6 +25,27 @@ namespace HerentalsVuilbakken.Controllers
             _userService = userService;
             _context = context;
         }
+        // GET: api/User/All/1
+        [Authorize]
+        [HttpGet("All/{id}")]
+        public async Task<ActionResult<IEnumerable<User>>> GetUsersExceptMe(int id)
+        {
+            return await _context.Users.Where(u => u.UserID != id).Include(r => r.Role).ToListAsync();
+        }
+        // GET: api/User/1
+        [Authorize]
+        [HttpGet("{id}")]
+        public async Task<ActionResult<User>> GetUser(int id)
+        {
+
+            var user = await _context.Users.Include(r => r.Role).SingleOrDefaultAsync(u => u.UserID == id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return user;
+        }
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody] User userParam)
         {
@@ -55,6 +76,7 @@ namespace HerentalsVuilbakken.Controllers
 
             return Ok(user);
         }
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
@@ -119,20 +141,6 @@ namespace HerentalsVuilbakken.Controllers
                 }
             }
             user.Wachtwoord = null;
-            return user;
-        }
-        // GET: api/User/1
-        [Authorize]
-        [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
-        {
-
-            var user = await _context.Users.SingleOrDefaultAsync(u => u.UserID == id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
             return user;
         }
         [Authorize]

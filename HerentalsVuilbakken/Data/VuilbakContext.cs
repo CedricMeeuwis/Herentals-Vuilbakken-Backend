@@ -14,6 +14,7 @@ namespace HerentalsVuilbakken.Data
         {
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<Zone> Zones { get; set; }
         public DbSet<Vuilbak> Vuilbakken { get; set; }
         public DbSet<VuilbakLogging> VuilbakLoggings { get; set; }
         public DbSet<Role> Roles { get; set; }
@@ -22,7 +23,8 @@ namespace HerentalsVuilbakken.Data
             modelBuilder.Entity<User>().ToTable("User");
             modelBuilder.Entity<Vuilbak>().ToTable("Vuilbak");
             modelBuilder.Entity<Role>().ToTable("Role");
-            modelBuilder.Entity<Vuilbak>().ToTable("VuilbakLogging");
+            modelBuilder.Entity<Zone>().ToTable("Zone");
+            modelBuilder.Entity<VuilbakLogging>().ToTable("VuilbakLogging");
         }
     }
 }

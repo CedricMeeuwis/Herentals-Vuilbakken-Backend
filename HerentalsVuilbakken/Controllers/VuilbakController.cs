@@ -25,7 +25,7 @@ namespace HerentalsVuilbakken.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Vuilbak>>> GetVuilbakken()
         {
-            return await _context.Vuilbakken.ToListAsync();
+            return await _context.Vuilbakken.OrderByDescending(v => v.Volheid/v.WanneerVol).Include(z => z.Zone).ToListAsync();
         }
         // GET: api/Vuilbak/1
         [Authorize]
@@ -33,7 +33,7 @@ namespace HerentalsVuilbakken.Controllers
         public async Task<ActionResult<Vuilbak>> GetVuilbak(int id)
         {
 
-            var vuilbak = await _context.Vuilbakken.SingleOrDefaultAsync(v => v.VuilbakID == id);
+            var vuilbak = await _context.Vuilbakken.Include(z => z.Zone).SingleOrDefaultAsync(v => v.VuilbakID == id);
 
             if (vuilbak == null)
             {

@@ -33,7 +33,7 @@ namespace HerentalsVuilbakken.Controllers
         public async Task<ActionResult<VuilbakLogging>> GetVuilbakLogging(int id)
         {
 
-            var vuilbaklogging = await _context.VuilbakLoggings.SingleOrDefaultAsync(v => v.VuilbakLoggingID == id);
+            var vuilbaklogging = await _context.VuilbakLoggings.OrderByDescending(v => v.Datum).SingleOrDefaultAsync(v => v.VuilbakLoggingID == id);
 
             if (vuilbaklogging == null)
             {
