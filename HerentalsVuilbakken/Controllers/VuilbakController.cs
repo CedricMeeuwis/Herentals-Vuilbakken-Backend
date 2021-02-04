@@ -72,9 +72,9 @@ namespace HerentalsVuilbakken.Controllers
 
             return NoContent();
         }
-        // PUT: api/Vuilbak/Gewicht/10/5
-        [HttpPut("Gewicht/{gewicht}/{id}")]
-        public async Task<IActionResult> PutVuilbakGewicht(int gewicht, int id)
+        // PUT: api/Vuilbak/Gewicht/1/10
+        [HttpPut("Gewicht/{id}")]
+        public async Task<IActionResult> PutVuilbakGewicht(int id, string gewicht)
         {
 
             var vuilbak = await _context.Vuilbakken.SingleOrDefaultAsync(v => v.VuilbakID == id);
@@ -83,7 +83,7 @@ namespace HerentalsVuilbakken.Controllers
             {
                 return BadRequest();
             }
-            vuilbak.Gewicht = gewicht;
+            vuilbak.Gewicht = int.Parse(gewicht);
 
             _context.Entry(vuilbak).State = EntityState.Modified;
 

@@ -84,7 +84,7 @@ namespace HerentalsVuilbakken.Controllers
             _context.Zones.Add(zone);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetZones", new { id = zone.ZoneID }, zone);
+            return CreatedAtAction("GetZone", new { id = zone.ZoneID }, zone);
         }
         // DELETE: api/Zone/5
         [Authorize]

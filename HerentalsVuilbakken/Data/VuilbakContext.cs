@@ -18,6 +18,8 @@ namespace HerentalsVuilbakken.Data
         public DbSet<Vuilbak> Vuilbakken { get; set; }
         public DbSet<VuilbakLogging> VuilbakLoggings { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Enquete> Enquetes { get; set; }
+        public DbSet<Antwoord> Antwoorden { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable("User");
@@ -25,6 +27,23 @@ namespace HerentalsVuilbakken.Data
             modelBuilder.Entity<Role>().ToTable("Role");
             modelBuilder.Entity<Zone>().ToTable("Zone");
             modelBuilder.Entity<VuilbakLogging>().ToTable("VuilbakLogging");
+            modelBuilder.Entity<Enquete>().ToTable("Enquete");
+            modelBuilder.Entity<Antwoord>().ToTable("Antwoord");
+
+            modelBuilder.Entity<Vuilbak>()
+                .HasMany(v => v.VuilbakLoggings)
+                .WithOne(v => v.Vuilbak)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Zone>()
+                .HasMany(v => v.Vuilbakken)
+                .WithOne(v => v.Zone)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Enquete>()
+                .HasMany(x => x.Antwoorden)
+                .WithOne(x => x.Enquete)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
